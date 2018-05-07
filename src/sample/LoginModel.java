@@ -6,8 +6,10 @@ import java.sql.*;
 
 public class LoginModel {
 
+    //initialize the connection object
     Connection connection;
 
+    //handle connection creation
     public LoginModel(){
         try {
             this.connection = dbConnection.getConnection();
@@ -20,10 +22,12 @@ public class LoginModel {
         }
     }
 
+    //check if database is connected
     public boolean isDatabaseConnected(){
         return this.connection != null;
     }
 
+    //check if user has been logged in
     public boolean isLogin(String username, String password, String option)throws Exception{
 
         ResultSet rs = null;
