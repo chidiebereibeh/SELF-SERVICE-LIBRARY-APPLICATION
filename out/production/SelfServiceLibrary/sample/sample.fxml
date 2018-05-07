@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Label layoutX="186.0" layoutY="32.0" prefHeight="53.0" prefWidth="216.0" text="   Login" textAlignment="CENTER">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="combobox" layoutX="141.0" layoutY="110.0" prefHeight="44.0" prefWidth="300.0" promptText="Member or Admin" />
+      <TextField fx:id="username" layoutX="142.0" layoutY="165.0" prefHeight="44.0" prefWidth="300.0" promptText="Username">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <PasswordField fx:id="password" layoutX="139.0" layoutY="224.0" prefHeight="44.0" prefWidth="300.0" promptText="Password">
+         <font>
+            <Font size="15.0" />
+         </font></PasswordField>
+      <Label layoutX="147.0" layoutY="271.0" text="Not Registered?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="300.0" layoutY="273.0" text="Create account" textFill="#d7183b">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="loginButton" layoutX="214.0" layoutY="314.0" mnemonicParsing="false" onAction="#Login" prefHeight="44.0" prefWidth="150.0" text="ok">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
