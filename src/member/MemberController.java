@@ -18,7 +18,7 @@ public class MemberController {
 
             userStage.setScene(scene);
             userStage.setTitle("LIBRARY MENU");
-            userStage.setResizable(false);
+            userStage.setResizable(true);
             userStage.show();
         } catch (IOException ex) {
             ex.printStackTrace();

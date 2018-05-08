@@ -20,7 +20,7 @@ public class AdminController {
 
             adminStage.setScene(scene);
             adminStage.setTitle("ADMIN DASHBOAD");
-            adminStage.setResizable(false);
+            adminStage.setResizable(true);
             adminStage.show();
 
         } catch (IOException e) {
