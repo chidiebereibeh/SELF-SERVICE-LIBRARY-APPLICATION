@@ -4,14 +4,16 @@ import Admin.AdminController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import member.MemberController;
+import registration.RegitrationController;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,6 +21,7 @@ public class Controller implements Initializable {
 
     LoginModel loginM = new LoginModel();
 
+    RegitrationController regitrationController = new RegitrationController();
 
 
     @FXML
@@ -38,7 +41,6 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-
         if (this.loginM.isDatabaseConnected()) {
             System.out.println("Connected to Database");
         } else {
@@ -46,12 +48,11 @@ public class Controller implements Initializable {
         }
 
         this.combobox.setItems(FXCollections.observableArrayList(option.values()));
-
     }
 
 
     @FXML
-    public void Login(ActionEvent event) {
+    public boolean Login(ActionEvent event) {
         try {
 
             String option = this.combobox.getValue().toString().toLowerCase();
@@ -72,16 +73,46 @@ public class Controller implements Initializable {
                         break;
                 }
             } else {
-                System.out.println("not working");
+                Alert dialogue = new Alert(Alert.AlertType.ERROR, "Invalid login credentials", ButtonType.OK);
+                dialogue.show();
+                return false;
             }
+        } catch (Exception e) {
+            System.err.println("Error " + e.getMessage());
+            return false;
+        }
+
+        return false;
+    }
+
+    public void createAccount(){
 
 
-        } catch (Exception localException) {
+        try {
+            Stage userStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            Pane root = loader.load((getClass(RegitrationController.class).getResource("registration.fxml").openStream()));
 
-            localException.printStackTrace();
+            Scene scene = new Scene(root);
+
+            userStage.setScene(scene);
+            userStage.setTitle("registration");
+            userStage.setResizable(true);
+            userStage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
     }
 
-
+    private Class<RegitrationController> getClass(Class<RegitrationController> regitrationControllerClass) {
+        return regitrationControllerClass;
+    }
 }
+
+
+
+
+
+
+

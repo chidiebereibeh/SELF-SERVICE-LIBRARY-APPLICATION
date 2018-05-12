@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<!--suppress XmlPathReference -->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
             prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="member.MemberController">
@@ -29,7 +30,7 @@
         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="205.0" layoutY="133.0" pickOnBounds="true"
                    preserveRatio="true">
             <image>
-                <Image url="img/myImage2.png"/>
+                <Image url="@img/myImage2.png"/>
             </image>
         </ImageView>
 

@@ -1,0 +1,5 @@
+<root>
+    <item name='javafx.scene.control.TableColumn void setCellFactory(javafx.util.Callback&lt;javafx.scene.control.TableColumn&lt;S,T&gt;,javafx.scene.control.TableCell&lt;S,T&gt;&gt;)'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>
