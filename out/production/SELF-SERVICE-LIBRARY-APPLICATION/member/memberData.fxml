@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="410.0" prefWidth="658.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Checkout">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox layoutX="189.0" layoutY="1.0" prefHeight="375.0" prefWidth="468.0">
+                           <children>
+                              <TableView prefHeight="375.0" prefWidth="487.0">
+                                <columns>
+                                  <TableColumn prefWidth="194.0" text="Title" />
+                                  <TableColumn prefWidth="193.0" text="author Name" />
+                                    <TableColumn text="Aisle" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </HBox>
+                        <VBox layoutX="2.0" layoutY="1.0" prefHeight="375.0" prefWidth="187.0">
+                           <children>
+                              <TextField promptText="search">
+                                 <VBox.margin>
+                                    <Insets left="5.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="15.0" right="15.0" />
+                                 </padding>
+                              </TextField>
+                              <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="187.0" text="Search">
+                                 <VBox.margin>
+                                    <Insets left="5.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="15.0" right="15.0" />
+                                 </padding>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="187.0" text="Checkout">
+                                 <VBox.margin>
+                                    <Insets left="5.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="15.0" right="15.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Checkin">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox layoutX="143.0" layoutY="1.0" prefHeight="374.0" prefWidth="515.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

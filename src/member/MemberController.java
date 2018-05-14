@@ -1,5 +1,6 @@
 package member;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -8,6 +9,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MemberController {
+
+    memberToUse mem = new memberToUse();
+
     public void loadMemberPage() {
         try {
             Stage userStage = new Stage();
@@ -23,6 +27,16 @@ public class MemberController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
+
+
+        }
+
+
+    public void gotoBooks(ActionEvent event) throws IOException{
+
+        mem.memberTransaction();
+
 
     }
 }

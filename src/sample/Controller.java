@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import member.MemberController;
+import member.memberToUse;
 import registration.RegitrationController;
 
 import java.io.IOException;
@@ -22,6 +23,8 @@ public class Controller implements Initializable {
     LoginModel loginM = new LoginModel();
 
     RegitrationController regitrationController = new RegitrationController();
+
+    memberToUse mem = new memberToUse();
 
 
     @FXML
@@ -85,7 +88,7 @@ public class Controller implements Initializable {
         return false;
     }
 
-    public void createAccount(){
+    public void createAccount(ActionEvent event) throws Exception{
 
 
         try {
@@ -108,6 +111,8 @@ public class Controller implements Initializable {
     private Class<RegitrationController> getClass(Class<RegitrationController> regitrationControllerClass) {
         return regitrationControllerClass;
     }
+
+
 }
 
 
