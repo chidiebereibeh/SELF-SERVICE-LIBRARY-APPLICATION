@@ -21,8 +21,6 @@ public class memberToUse {
             userStage.setTitle("Checkout and Checkin");
             userStage.setResizable(true);
             userStage.show();
-
-
         }catch (IOException e){
             e.printStackTrace();
 
