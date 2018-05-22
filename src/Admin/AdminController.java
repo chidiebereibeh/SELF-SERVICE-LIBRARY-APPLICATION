@@ -77,13 +77,6 @@ public class AdminController implements Initializable {
             super.updateItem(item, empty);
             setText(empty ? "" : item.getName());
         }
-
-        @Override
-        protected void selectItem(Author item, boolean empty) {
-            super.updateItem(item, empty);
-            setText(empty ? "" : item.getName());
-        }
-
     };
 
     Callback<ListView<Shelve>, ListCell<Shelve>> shelveCellFactory = lv -> new ListCell<Shelve>() {
@@ -93,13 +86,6 @@ public class AdminController implements Initializable {
             super.updateItem(item, empty);
             setText(empty ? "" : item.getName());
         }
-
-        @Override
-        protected void SelectItem(Shelve item, boolean empty) {
-            super.updateItem(item, empty);
-            setText(empty ? "" : item.getName());
-        }
-
     };
 
     @FXML
