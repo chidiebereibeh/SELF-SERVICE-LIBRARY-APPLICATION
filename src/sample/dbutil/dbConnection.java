@@ -8,7 +8,7 @@ import java.util.concurrent.Executor;
 public class dbConnection implements Connection {
 
     private  static final String SQCON = "jdbc:mysql://localhost:3306/library_data?user=root&password=smilicb2k";
-    private  static final String URL = "jdbc:mysql://127.0.0.1:3306/library_data?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private  static final String URL = "jdbc:mysql://127.0.0.1:3306/mydb?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private  static final String USER = "root";
     private  static final String PASSWORD = "smilicb2k";
 

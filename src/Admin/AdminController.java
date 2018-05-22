@@ -1,6 +1,8 @@
 package Admin;
 
+import Utility.AuthorLoader;
 import Utility.BookLoader;
+import Utility.ShelveLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,11 +10,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import model.Author;
+import model.Book;
+import model.Shelve;
 import sample.dbutil.dbConnection;
 
 import java.io.IOException;
@@ -32,9 +36,10 @@ public class AdminController implements Initializable {
     private TextField titleText;
 
     @FXML
-    private TextField authorName;
+    private ComboBox<Author> authorComboBox;
+
     @FXML
-    private TextField shelveID;
+    private ComboBox<Shelve> shelveComboBox;
 
     @FXML
     public TableView<Book> bookListTab;
@@ -50,16 +55,52 @@ public class AdminController implements Initializable {
     private dbConnection dc;
 
     private ObservableList<Book> data = FXCollections.observableArrayList();
-    ;
 
     private Connection connection;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.dc = new dbConnection();
         loadAllBooks();
+
+        this.shelveComboBox.setItems(ShelveLoader.load());
+        this.shelveComboBox.setCellFactory(shelveCellFactory);
+
+        this.authorComboBox.setItems(AuthorLoader.load());
+        this.authorComboBox.setCellFactory(authorCellFactory);
     }
+
+    Callback<ListView<Author>, ListCell<Author>> authorCellFactory = lv -> new ListCell<Author>() {
+
+        @Override
+        protected void updateItem(Author item, boolean empty) {
+            super.updateItem(item, empty);
+            setText(empty ? "" : item.getName());
+        }
+
+        @Override
+        protected void selectItem(Author item, boolean empty) {
+            super.updateItem(item, empty);
+            setText(empty ? "" : item.getName());
+        }
+
+    };
+
+    Callback<ListView<Shelve>, ListCell<Shelve>> shelveCellFactory = lv -> new ListCell<Shelve>() {
+
+        @Override
+        protected void updateItem(Shelve item, boolean empty) {
+            super.updateItem(item, empty);
+            setText(empty ? "" : item.getName());
+        }
+
+        @Override
+        protected void SelectItem(Shelve item, boolean empty) {
+            super.updateItem(item, empty);
+            setText(empty ? "" : item.getName());
+        }
+
+    };
 
     @FXML
     private void loadBook(ActionEvent event) throws SQLException {
@@ -74,7 +115,7 @@ public class AdminController implements Initializable {
 
     public void addBooks(ActionEvent event) {
 
-        String sqlInsert = "insert into books(isbn,title,author,shelve_id) values(?, ?, ?, ?)";
+        String sqlInsert = "insert into books(isbn,title,author_id,shelve_id) values(?, ?, ?, ?)";
 
         try {
             this.connection = dbConnection.getConnection();
@@ -82,8 +123,8 @@ public class AdminController implements Initializable {
 
             String isbn = this.isbnText.getText();
             String title = this.titleText.getText();
-            String author = this.authorName.getText();
-            String shelveID = this.shelveID.getText();
+            String author = Integer.toString(this.authorComboBox.getValue().getId());
+            String shelveID = Integer.toString(this.shelveComboBox.getValue().getId());
 
             statement.setString(1, isbn);
             statement.setString(2, title);
@@ -105,16 +146,15 @@ public class AdminController implements Initializable {
 
     @FXML
     private void clearField(ActionEvent event) {
-
         clearFormFields();
-
     }
 
     private void clearFormFields() {
         this.isbnText.setText("");
         this.titleText.setText("");
-        this.authorName.setText("");
-        this.shelveID.setText("");
+
+        this.authorComboBox.setValue(null);
+        this.shelveComboBox.setValue(null);
     }
 
     @FXML

@@ -1,6 +1,6 @@
 package member;
 
-import Admin.Book;
+import model.Book;
 import Utility.BookLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
 public class MemberController implements Initializable{
@@ -35,6 +36,7 @@ public class MemberController implements Initializable{
 
 
     private ObservableList<Book> data= FXCollections.observableArrayList();
+    private Connection connection;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,6 +49,8 @@ public class MemberController implements Initializable{
         BookLoader.load(this.data, this.isbnColumn, this.titleColumn, this.authorNameColumn, this.shelveIDcolumn);
         BookLoader.refreshBookList(this.bookListTab, this.data);
     }
+
+
 
 
     public void loadMemberPage() {
