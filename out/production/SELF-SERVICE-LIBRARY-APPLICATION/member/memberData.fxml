@@ -19,14 +19,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <HBox layoutX="305.0" layoutY="-1.0" prefHeight="688.0" prefWidth="977.0">
+                        <HBox layoutX="314.0" prefHeight="688.0" prefWidth="977.0">
                            <children>
                               <TableView fx:id="bookListTab" prefHeight="688.0" prefWidth="979.0">
                                 <columns>
-                                  <TableColumn fx:id="isbnColumn" prefWidth="172.0" text="ISBN" />
-                                  <TableColumn fx:id="titleColumn" prefWidth="341.0" text="Title" />
-                                    <TableColumn fx:id="authorNameColumn" prefWidth="311.0" text="Autor Name" />
-                                    <TableColumn fx:id="shelveIDcolumn" prefWidth="151.0" text="Shelve Number" />
+                                  <TableColumn fx:id="isbnColumn" minWidth="0.0" prefWidth="153.0" text="ISBN" />
+                                  <TableColumn fx:id="titleColumn" minWidth="0.0" prefWidth="245.0" text="Title" />
+                                    <TableColumn fx:id="shelveIDcolumn" minWidth="0.0" prefWidth="191.0" text="Shelve " />
+                                    <TableColumn fx:id="authorNameColumn" minWidth="0.0" prefWidth="232.0" text="Author Name" />
+                                    <TableColumn fx:id="landsatColumn" minWidth="0.0" prefWidth="143.0" text="Loan Status" />
                                 </columns>
                               </TableView>
                            </children>

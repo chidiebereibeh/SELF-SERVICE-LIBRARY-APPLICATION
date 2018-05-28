@@ -51,12 +51,15 @@ public class AdminController implements Initializable {
     private TableColumn<Book, String> authorNameColumn;
     @FXML
     private TableColumn<Book, String> shelveIDcolumn;
+    @FXML
+    private TableColumn<Book, String> landsatColumn;
 
     private dbConnection dc;
 
     private ObservableList<Book> data = FXCollections.observableArrayList();
 
     private Connection connection;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -90,12 +93,11 @@ public class AdminController implements Initializable {
 
     @FXML
     private void loadBook(ActionEvent event) throws SQLException {
-
         loadAllBooks();
     }
 
     private void loadAllBooks() {
-        BookLoader.load(this.data, this.isbnColumn, this.titleColumn, this.authorNameColumn, this.shelveIDcolumn);
+        BookLoader.load(this.data, this.isbnColumn, this.titleColumn, this.authorNameColumn, this.shelveIDcolumn, this.landsatColumn);
         BookLoader.refreshBookList(this.bookListTab, this.data);
     }
 
@@ -120,7 +122,7 @@ public class AdminController implements Initializable {
             statement.execute();
             connection.close();
 
-            this.data.add(new Book(isbn, title, author, shelveID));
+            this.data.add(new Book(isbn, title, this.authorComboBox.getValue().getName(), this.shelveComboBox.getValue().getName(), false));
             BookLoader.refreshBookList(this.bookListTab, this.data);
             clearFormFields();
 

@@ -19,7 +19,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-public class MemberController implements Initializable{
+public class MemberController implements Initializable {
     memberToUse mem = new memberToUse();
 
     @FXML
@@ -33,9 +33,11 @@ public class MemberController implements Initializable{
     private TableColumn<Book, String> authorNameColumn;
     @FXML
     private TableColumn<Book, String> shelveIDcolumn;
+    @FXML
+    private TableColumn<Book, String> landsatColumn;
 
 
-    private ObservableList<Book> data= FXCollections.observableArrayList();
+    private ObservableList<Book> data = FXCollections.observableArrayList();
     private Connection connection;
 
     @Override
@@ -46,11 +48,10 @@ public class MemberController implements Initializable{
 
     @FXML
     private void loadAllBooks() {
-        BookLoader.load(this.data, this.isbnColumn, this.titleColumn, this.authorNameColumn, this.shelveIDcolumn);
+        BookLoader.loadLoans = false;
+        BookLoader.load(this.data, this.isbnColumn, this.titleColumn, this.authorNameColumn, this.shelveIDcolumn, this.landsatColumn);
         BookLoader.refreshBookList(this.bookListTab, this.data);
     }
-
-
 
 
     public void loadMemberPage() {
@@ -72,7 +73,18 @@ public class MemberController implements Initializable{
 
     }
 
-    public void gotoBooks(ActionEvent event){
+
+    public void gotoBooks(ActionEvent event) {
         mem.memberTransaction();
+    }
+
+
+
+    @FXML
+    private void checkOutBook(ActionEvent event){
+
+        String sqlbook = "";
+
+
     }
 }

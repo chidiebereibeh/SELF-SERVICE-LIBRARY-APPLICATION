@@ -7,14 +7,16 @@ public class Book {
     private final StringProperty isbn;
     private final StringProperty title;
     private final StringProperty author;
-    private final StringProperty shelve_id;
+    private final StringProperty shelve;
+    private final StringProperty loanStatus;
 
 
-    public Book(String isbn, String title, String author, String shelve_id){
+    public Book(String isbn, String title, String author, String shelve, boolean loanStatus){
         this.isbn = new SimpleStringProperty(isbn);
         this.title = new SimpleStringProperty(title);
         this.author = new SimpleStringProperty(author);
-        this.shelve_id = new SimpleStringProperty(shelve_id);
+        this.shelve = new SimpleStringProperty(shelve);
+        this.loanStatus = new SimpleStringProperty(loanStatus ? "On Loan" : "Available");
     }
 
     public String getIsbn() {
@@ -41,6 +43,18 @@ public class Book {
         this.title.set(title);
     }
 
+    public String getLoanStatus() {
+        return loanStatus.get();
+    }
+
+    public StringProperty loanStatusProperty() {
+        return loanStatus;
+    }
+
+    public void setLoanStatus(String loanStatus) {
+        this.loanStatus.set(loanStatus);
+    }
+
     public String getAuthor() {
         return author.get();
     }
@@ -53,15 +67,15 @@ public class Book {
         this.author.set(author);
     }
 
-    public String getShelve_id() {
-        return shelve_id.get();
+    public String getShelve() {
+        return shelve.get();
     }
 
-    public StringProperty shelve_idProperty() {
-        return shelve_id;
+    public StringProperty shelveProperty() {
+        return shelve;
     }
 
-    public void setShelve_id(String shelve_id) {
-        this.shelve_id.set(shelve_id);
+    public void setShelve(String shelve) {
+        this.shelve.set(shelve);
     }
 }
