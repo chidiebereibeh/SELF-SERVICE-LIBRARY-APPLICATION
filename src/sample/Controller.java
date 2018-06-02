@@ -60,6 +60,7 @@ public class Controller implements Initializable {
 
             String option = this.combobox.getValue().toString().toLowerCase();
 
+
             if (this.loginM.isLogin(this.username.getText(), this.password.getText(), option)) {
                 Stage stage = (Stage) this.loginButton.getScene().getWindow();
                 stage.close();

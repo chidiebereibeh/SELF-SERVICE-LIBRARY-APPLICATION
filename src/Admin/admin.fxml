@@ -28,7 +28,7 @@
                                   <TableColumn fx:id="isbnColumn" prefWidth="217.0" text="ISBN" />
                                   <TableColumn fx:id="titleColumn" prefWidth="195.0" text="Title" />
                                     <TableColumn fx:id="authorNameColumn" prefWidth="177.0" text="Author Name" />
-                                    <TableColumn fx:id="shelveIDcolumn" prefWidth="200.0" text="Shelve Number" />
+                                    <TableColumn fx:id="shelveIDcolumn" prefWidth="200.0" text="              Shelve " />
                                     <TableColumn fx:id="landsatColumn" prefWidth="200.0" text="Loan Status" />
                                 </columns>
                               </TableView>
@@ -104,17 +104,21 @@
                                     <Insets left="5.0" />
                                  </VBox.margin>
                               </Label>
+                              <Button mnemonicParsing="false" onAction="#seeLoans" prefHeight="27.0" prefWidth="277.0" text="See All Loaned Books">
+                                 <VBox.margin>
+                                    <Insets left="15.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                         </VBox>
-                        <TableView layoutX="274.0" prefHeight="688.0" prefWidth="1008.0">
+                        <TableView fx:id="loanListTab" layoutX="274.0" prefHeight="688.0" prefWidth="1008.0">
                           <columns>
-                            <TableColumn prefWidth="131.99996948242188" text="Username" />
-                            <TableColumn prefWidth="90.0" text="ISBN" />
-                              <TableColumn prefWidth="142.0" text="Book Title" />
-                              <TableColumn prefWidth="193.0" text="Author Name" />
-                              <TableColumn prefWidth="152.0" text="loan Date" />
-                              <TableColumn prefWidth="142.0" text="Shelve Number" />
-                              <TableColumn prefWidth="152.0" text="Loan Time" />
+                            <TableColumn fx:id="usernameadmin" prefWidth="183.99996948242188" text="Username" />
+                            <TableColumn fx:id="isbnadmin" prefWidth="161.0" text="ISBN" />
+                              <TableColumn fx:id="booktitleadmin" prefWidth="263.0" text="Book Title" />
+                              <TableColumn fx:id="authornameadmin" prefWidth="115.0" text="Author Name" />
+                              <TableColumn fx:id="loandateadmin" minWidth="0.0" prefWidth="157.0" text="loan Date" />
+                              <TableColumn fx:id="loanstatusadmin" prefWidth="181.0" text="Loan Status" />
                           </columns>
                         </TableView>
                      </children>

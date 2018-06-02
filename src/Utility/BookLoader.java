@@ -1,10 +1,10 @@
 package Utility;
 
-import model.Book;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Book;
 import sample.dbutil.dbConnection;
 
 import java.sql.Connection;
@@ -15,7 +15,7 @@ public class BookLoader {
     public static boolean loadLoans = true;
 
     public static void load(ObservableList<Book> data, TableColumn<Book, String> isbnColumn, TableColumn<Book,
-            String> titleColumn, TableColumn<Book, String> authorNameColumn, TableColumn<Book, String> shelveIDColumn, TableColumn<Book, String> loanstatColumn) {
+            String> titleColumn, TableColumn<Book, String> authorNameColumn, TableColumn<Book, String> shelveIDColumn) {
 
         try {
 
@@ -46,10 +46,6 @@ public class BookLoader {
         titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         authorNameColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
         shelveIDColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("shelve"));
-        loanstatColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("loanStatus"));
-
-
-
     }
 
     public static void refreshBookList(TableView<Book> list, ObservableList<Book> data) {

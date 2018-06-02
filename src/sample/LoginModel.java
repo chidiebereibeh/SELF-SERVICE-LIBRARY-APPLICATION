@@ -3,6 +3,7 @@ package sample;
 import sample.dbutil.dbConnection;
 
 import java.sql.*;
+import java.util.prefs.Preferences;
 
 public class LoginModel {
 
@@ -48,6 +49,13 @@ public class LoginModel {
                 st.setString(2, rs.getString("id"));
 
                 st.execute();
+
+                //store user info in preferences
+                Preferences userPreference = Preferences.userRoot();
+                userPreference.put("username", rs.getString("username"));
+                userPreference.put("type", rs.getString("type"));
+                userPreference.put("id", rs.getString("id"));
+                userPreference.sync();
 
                 return true;
             }

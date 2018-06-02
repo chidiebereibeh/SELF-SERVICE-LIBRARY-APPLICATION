@@ -2,6 +2,7 @@ package Admin;
 
 import Utility.AuthorLoader;
 import Utility.BookLoader;
+import Utility.LoanLoader;
 import Utility.ShelveLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Author;
 import model.Book;
+import model.Loan;
 import model.Shelve;
 import sample.dbutil.dbConnection;
 
@@ -44,6 +46,8 @@ public class AdminController implements Initializable {
     @FXML
     public TableView<Book> bookListTab;
     @FXML
+    public TableView<Loan> loanListTab;
+    @FXML
     private TableColumn<Book, String> isbnColumn;
     @FXML
     private TableColumn<Book, String> titleColumn;
@@ -53,13 +57,26 @@ public class AdminController implements Initializable {
     private TableColumn<Book, String> shelveIDcolumn;
     @FXML
     private TableColumn<Book, String> landsatColumn;
+    @FXML
+    private TableColumn<Loan, String> usernameadmin;
+    @FXML
+    private TableColumn<Loan, String> isbnadmin;
+    @FXML
+    private TableColumn<Loan, String> booktitleadmin;
+    @FXML
+    private TableColumn<Loan, String> authornameadmin;
+    @FXML
+    private TableColumn<Loan, String> loandateadmin;
+    @FXML
+    private TableColumn<Loan, String> loanstatusadmin;
+
 
     private dbConnection dc;
 
     private ObservableList<Book> data = FXCollections.observableArrayList();
+    private ObservableList<Loan> loanData = FXCollections.observableArrayList();
 
     private Connection connection;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -97,7 +114,7 @@ public class AdminController implements Initializable {
     }
 
     private void loadAllBooks() {
-        BookLoader.load(this.data, this.isbnColumn, this.titleColumn, this.authorNameColumn, this.shelveIDcolumn, this.landsatColumn);
+        BookLoader.load(this.data, this.isbnColumn, this.titleColumn, this.authorNameColumn, this.shelveIDcolumn);
         BookLoader.refreshBookList(this.bookListTab, this.data);
     }
 
@@ -167,6 +184,14 @@ public class AdminController implements Initializable {
     }
 
 
+    @FXML
+    private void seeLoans(ActionEvent event) {
+        LoanLoader.loadActiveLoans = false;
+        LoanLoader.loadAllLoans(this.loanData, this.usernameadmin, this.isbnadmin, this.booktitleadmin, this.authornameadmin, this.loanstatusadmin, this.loandateadmin);
+        LoanLoader.refreshBookList(this.loanListTab, this.loanData);
+    }
+
+
     public void loadAdminPage() {
 
         try {
@@ -190,5 +215,6 @@ public class AdminController implements Initializable {
             e.printStackTrace();
         }
     }
+
 
 }
