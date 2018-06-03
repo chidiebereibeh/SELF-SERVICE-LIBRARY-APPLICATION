@@ -27,9 +27,8 @@
                                 <columns>
                                   <TableColumn fx:id="isbnColumn" prefWidth="217.0" text="ISBN" />
                                   <TableColumn fx:id="titleColumn" prefWidth="195.0" text="Title" />
-                                    <TableColumn fx:id="authorNameColumn" prefWidth="177.0" text="Author Name" />
-                                    <TableColumn fx:id="shelveIDcolumn" prefWidth="200.0" text="              Shelve " />
-                                    <TableColumn fx:id="landsatColumn" prefWidth="200.0" text="Loan Status" />
+                                    <TableColumn fx:id="authorNameColumn" prefWidth="290.0" text="Author Name" />
+                                    <TableColumn fx:id="shelveIDcolumn" prefWidth="244.0" text="              Shelve " />
                                 </columns>
                               </TableView>
                            </children>

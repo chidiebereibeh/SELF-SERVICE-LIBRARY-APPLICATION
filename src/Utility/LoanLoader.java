@@ -10,12 +10,13 @@ import sample.dbutil.dbConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.prefs.Preferences;
 
 public class LoanLoader {
     public static boolean loadActiveLoans = true;
 
     public static void loadAllLoans(ObservableList<Loan> data, TableColumn<Loan, String> usernameColumn, TableColumn<Loan, String> isbnColumn, TableColumn<Loan,
-            String> titleColumn, TableColumn<Loan, String> authorNameColumn, TableColumn<Loan, String> loanstatColumn,TableColumn<Loan, String> loanDateColumn) {
+            String> titleColumn, TableColumn<Loan, String> authorNameColumn, TableColumn<Loan, String> loanstatColumn, TableColumn<Loan, String> loanDateColumn) {
 
         loadAndPrepareData(data);
 
@@ -36,18 +37,20 @@ public class LoanLoader {
         isbnColumn.setCellValueFactory(new PropertyValueFactory<Loan, String>("isbn"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<Loan, String>("title"));
         loanTimeColumn.setCellValueFactory(new PropertyValueFactory<Loan, String>("loaned_at"));
-        returnTimeColumn.setCellValueFactory(new PropertyValueFactory<Loan, String>("r"));
+        returnTimeColumn.setCellValueFactory(new PropertyValueFactory<Loan, String>("due_date"));
     }
 
     private static void loadAndPrepareData(ObservableList<Loan> data) {
+        Preferences userPreference = Preferences.userRoot();
+
         try {
 
             String sql;
 
             if (loadActiveLoans) {
-                sql = "select l.id as id, l.loaned_at as loaned_at, l.users_id as users_id, l.books_isbn as books_isbn, l.returned_at as returned_at, l.books_isbn as isbn, b.title as title, u.username as username, a.name as name from loan l left join books b on b.isbn=l.books_isbn left join users u on users_id=u.id left join author a on a.id=b.author_id where l.returned_at is null";
+                sql = "select l.id as id, l.loaned_at as loaned_at, l.due_date as due_date, l.users_id as users_id, l.books_isbn as books_isbn, l.returned_at as returned_at, l.books_isbn as isbn, b.title as title, u.username as username, a.name as name from loan l left join books b on b.isbn=l.books_isbn left join users u on users_id=u.id left join author a on a.id=b.author_id where l.returned_at is null and l.users_id=" + userPreference.get("id", "");
             } else {
-                sql = "select l.id as id, l.loaned_at as loaned_at, l.users_id as users_id, l.books_isbn as books_isbn, l.returned_at as returned_at, l.books_isbn as isbn, b.title as title, u.username as username, a.name as name from loan l left join books b on b.isbn=l.books_isbn left join users u on users_id=u.id left join author a on a.id=b.author_id";
+                sql = "select l.id as id, l.loaned_at as loaned_at, l.due_date as due_date, l.users_id as users_id, l.books_isbn as books_isbn, l.returned_at as returned_at, l.books_isbn as isbn, b.title as title, u.username as username, a.name as name from loan l left join books b on b.isbn=l.books_isbn left join users u on users_id=u.id left join author a on a.id=b.author_id";
             }
 
             data.removeAll(data);
@@ -63,7 +66,8 @@ public class LoanLoader {
                         resultSet.getString("name"),
                         resultSet.getString("username"),
                         resultSet.getString("returned_at"),
-                        resultSet.getString("loaned_at")
+                        resultSet.getString("loaned_at"),
+                        resultSet.getString("due_date")
                 ));
             }
 

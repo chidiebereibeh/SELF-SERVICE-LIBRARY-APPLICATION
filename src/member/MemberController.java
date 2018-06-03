@@ -22,6 +22,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
@@ -99,6 +101,7 @@ public class MemberController implements Initializable {
 
             userStage.setScene(scene);
             userStage.setTitle("LIBRARY MENU");
+           // userStage.setFullScreen(true);
             userStage.setResizable(true);
             userStage.show();
         } catch (IOException ex) {
@@ -121,18 +124,24 @@ public class MemberController implements Initializable {
 
         try {
 
-            String sqloan = "insert into loan(books_isbn,users_id,loaned_at) values(?,?,?)";
+            String sqloan = "insert into loan(books_isbn,users_id,loaned_at,due_date) values(?,?,?,?)";
             String book_isbn = bookListTab.getSelectionModel().getSelectedItem().isbnProperty().getValue();
             String user_id = userPreference.get("id", "");
 
             if (!user_id.equals("")) {
                 String currentTime = getCurrentDate();
+                Calendar dueDate = Calendar.getInstance();
+                dueDate.setTime(new Date());
+                dueDate.add(Calendar.DATE, 15);
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 
                 Connection conn = dbConnection.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sqloan);
                 ps.setString(1, book_isbn);
                 ps.setString(2, user_id);
                 ps.setString(3, currentTime);
+                ps.setString(4, sdf.format(dueDate.getTime()));
                 ps.execute();
 
                 //update book loan status
@@ -144,6 +153,7 @@ public class MemberController implements Initializable {
                 bookListTab.getItems().removeAll(bookListTab.getSelectionModel().getSelectedItems());
 
             } else {
+
                 //TODO:: alert("Sorry! You can only checkout after logging in.");
                 //TODO:: redirect user to the login page;
                 System.out.println("Checkout failed for " + user_id);

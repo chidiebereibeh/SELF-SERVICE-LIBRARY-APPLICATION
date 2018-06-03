@@ -206,6 +206,7 @@ public class AdminController implements Initializable {
 
             adminStage.setScene(scene);
             adminStage.setTitle("ADMIN DASHBOAD");
+            //adminStage.setFullScreen(true);
             adminStage.setResizable(true);
             adminStage.show();
         } catch (IOException e) {
