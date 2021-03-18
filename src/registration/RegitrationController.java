@@ -63,6 +63,7 @@ public class RegitrationController implements Initializable{
             preparedStatement.setString(2,password);
             preparedStatement.setString(3, type);
 
+
             preparedStatement.execute();
             if(type.equals("member")){
                 MemberController con = new MemberController();
